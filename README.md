@@ -18,6 +18,39 @@ Fedora'da GVedit [çeşitli nedenlerle](https://ask.fedoraproject.org/en/questio
 
 İlk grafımızı çizmeye başlamadan önce, teknik olmayan bir şekilde grafların ne olduğunu anlayalım. G grafı, köşeler adı verilen bir düğüm grubundan ve bir çift köşeyi birbirine bağlayan bir dizi kenardan oluşur. Grafta kenarların yönü varsa, graf yönlü bir graf; aksi halde, graf yönsüz bir graftır.
 
+## dot Aracını Kullanarak Grafik Oluşturmak
+
+Kate'i veya favori metin düzenleyicinizi grafiğini oluşturmak istediğiniz grafı yazın. Örnek olarak aşağıdaki grafı da kullanabilirsiniz. Grafı yazmayı bitirdikten sonra ilkgraf.gs veya istediğiniz başka bir isimle kaydedin.
+
+```dot
+digraph G {
+    v1 -> v2 [label=e1];
+    v1 -> v4 [label=e2];
+    v4 -> v3 [label=e3];
+}
+```
+
+Grafiği PDF biçiminde oluşturmak için şu komutu çalıştırın:
+
+```bash
+$ dot ilkgraf.gs -Tpdf -o firstgraph.pdf
+```
+
+Grafiği PNG biçiminde oluşturmak içinse şu komutu çalıştırın:
+
+```bash
+$ dot ilkgraf.gs -Tpng -o firstgraph.png
+```
+
+Grafiği SVG biçiminde oluşturmak içinse şu komutu çalıştırın:
+
+```bash
+$ dot ilkgraf.gs -Tsvg -o firstgraph.svg
+```
+
+Oluşturulan grafiği görmek için de oluşturduğunuz dosyaya uygun olarak bir görüntüleyiciyi kullanabilirsiniz.
+
+
 ## DOT Sözdizimi
 
 ### Yönsüz Graflar
