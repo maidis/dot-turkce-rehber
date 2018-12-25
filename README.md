@@ -346,4 +346,5 @@ Bu sorun Inkscape veya diğer SVG düzenleyicilerle düzeltilebilir. Bazı durum
 - [DOT (graph description language) - Wikipedia](https://en.wikipedia.org/wiki/DOT_(graph_description_language))
 - [GraphViz Pocket Reference](https://graphs.grevian.org)
 - [Graphviz Example: Hello World](https://graphviz.gitlab.io/_pages/Gallery/directed/hello.html)
+- [DOT: A Language that Helps You to Draw Graphs](https://opensourceforu.com/2016/01/dot-a-language-that-helps-you-to-draw-graphs/)
 
