@@ -1,5 +1,13 @@
 # Graf Betimleme Dili: DOT
 
+## Giriş
+
+Bazı zeki insanlar bilgisayar bilimleri mezunlarının çizimde pek iyi olmadıklarını ama yine de çoğu zaman graf çizmeleri gerektiğini fark etti. Bu soylu ruhlar bizim graf çizebilmemiz için GraphViz adlı bir program yaptılar.
+
+Ücretsiz, açık kaynak kodlu ve harika olan bu yazılımın tek kusuruysa kullanımının inanılmaz derecede kolay olmamasıydı. Bu yüzden tezlerimiz, makalelerimiz ve ödevlerimiz için graf çizimimizi kolaylaştırmak için internetteki bazı güzel kaynaklardan yararlanarak bu belgeyi hazırladım.
+
+## DOT Dili
+
 DOT, bir graf betimleme dilidir. DOT grafları genellikle `gv` veya `dot` uzantılı dosyalarda yer alır. Microsoft Word'ün 2007 öncesindeki sürümlerinde kullanılan `dot` uzantılı dosyalarla karışıklığı önlemek için `gv` uzantısı tercih edilir.
 
 Çeşitli programlar DOT dosyalarını işleyebilir. Örneğin `dot`, `neato`, `twopi`, `circo`, `fdp` ve `sfdp` gibi çeşitli uygulamalar DOT dosyasını okuyabilir ve grafiksel biçimlere dönüştürebilir. `gvpr`, `gc`, `asyclic`, `ccomps`, `sccmap` ve `tred` gibi bazı uygulamalar da DOT dosyalarını okuyup temsil edilen graflar üzerinde hesaplamalar yapar. Son olarak, `lefty`, `dotty` ve `grappa` gibi uygulamalar da DOT dosyaları için etkileşimli bir arayüz sağlar. `GVedit` aracıysa etkileşimli olmayan bir grafik görüntüleyiciyle bir DOT dosya düzenleyicisini birleştirir. Bu sayılan programların çoğu [Graphviz](https://www.graphviz.org/) paketinin bir parçasıdır ya da bu paketteki araçlardan bazılarını kullanır.
@@ -67,6 +75,195 @@ Dot, `C` ve `C++` tarzı tek satır ve çok satırlı yorumları destekler. Ayr�
 
 ## Örnekler
 
+### Örnek 0. Merhaba Dünya
+
+```dot
+graph {
+    Merhaba -> Dünya
+}
+```
+
+### Örnek 1. Basit bir graf
+
+```dot
+graph {
+    a -- b;
+    b -- c;
+    a -- c;
+    d -- c;
+    e -- c;
+    e -- a;
+}
+```
+
+### Örnek 2. K6
+
+```dot
+graph {
+    a -- b;
+    b -- c;
+    c -- d;
+    d -- e;
+    e -- f;
+    a -- f;
+    a -- c;
+    a -- d;
+    a -- e;
+    b -- d;
+    b -- e;
+    b -- f;
+    c -- e;
+    c -- f;
+    d -- f;
+}
+```
+
+### Örnek 3. Basit bir yönlü graf
+
+```dot
+digraph {
+    a -> b;
+    b -> c;
+    c -> d;
+    d -> a;
+}
+```
+
+### Örnek 4. Ağırlıklı bir graf
+
+```dot
+digraph {
+    a -> b[label="0.2",weight="0.2"];
+    a -> c[label="0.4",weight="0.4"];
+    c -> b[label="0.6",weight="0.6"];
+    c -> e[label="0.6",weight="0.6"];
+    e -> e[label="0.1",weight="0.1"];
+    e -> b[label="0.7",weight="0.7"];
+}
+```
+
+### Örnek 5. Bir yolun gösterimi
+
+```dot
+graph {
+    a -- b[color=red,penwidth=3.0];
+    b -- c;
+    c -- d[color=red,penwidth=3.0];
+    d -- e;
+    e -- f;
+    a -- d;
+    b -- d[color=red,penwidth=3.0];
+    c -- f[color=red,penwidth=3.0];
+}
+```
+
+Aşağıdaki gibi bir kestirme yöntem bulunduğunu da unutmayın:
+
+```dot
+graph {
+    a -- b -- d -- c -- f[color=red,penwidth=3.0];
+    b -- c;
+    d -- e;
+    e -- f;
+    a -- d;
+}
+```
+
+### Örnek 6. Alt graflar
+
+Lütfen burada bazı tuhaflıklar olduğunu unutmayın. Öncelikle alt grafların adı önemlidir, görsel olarak ayrılması için, aşağıda gösterildiği gibi cluster_ ön adının eklenmesi gerekir. Ayrıca yalnızca DOT ve FDP yerleşim yöntemleri alt grafları desteklemektedir.
+
+```dot
+digraph {
+    subgraph cluster_0 {
+        label="Alt graf A";
+        a -> b;
+        b -> c;
+        c -> d;
+    }
+
+    subgraph cluster_1 {
+        label="Alt graf B";
+        a -> f;
+        f -> c;
+    }
+}
+```
+
+Aşağıdaki örnekteyse düğümler kendi kenarlarından ayrı olarak gruplandırılmıştır. Ayrıca splines=line; ile kenarların sadece düz çizgiler olarak çizilmesi gerektiğini, hiçbir eğriye izin verilmediği belirtilmiştir.
+
+```dot
+graph {
+    splines=line;
+    subgraph cluster_0 {
+        label="Subgraph A";
+        a; b; c
+    }
+
+    subgraph cluster_1 {
+        label="Subgraph B";
+        d; e;
+    }
+
+    a -- e;
+    a -- d;
+    b -- d;
+    b -- e;
+    c -- d;
+    c -- e;
+}
+```
+
+### Örnek 7. Büyük graflar
+
+Büyük graf tanımlamalarını yazmayı kolaylaştırmak için kenarlar bir küme paranteziyle birlikte gruplanabilir. Ayrıca grafın yukarıdan aşağıya doğru yerleştirilmesi yerine soldan sağa doğru yerleştirilmesi de yardımcı olabilir.
+
+```dot
+graph {
+    rankdir=LR; // Yukarıdan aşağı yerine soldan sağa
+    a -- { b c d };
+    b -- { c e };
+    c -- { e f };
+    d -- { f g };
+    e -- h;
+    f -- { h i j g };
+    g -- k;
+    h -- { o l };
+    i -- { l m j };
+    j -- { m n k };
+    k -- { n r };
+    l -- { o m };
+    m -- { o p n };
+    n -- { q r };
+    o -- { s p };
+    p -- { s t q };
+    q -- { t r };
+    r -- t;
+    s -- z;
+    t -- z;
+}
+```
+
+Büyük grafların yönetilebilir hale getirebilecek başka bir özellik de düğümleri aynı sütunda gruplamaktır:
+
+```dot
+graph {
+    rankdir=LR;
+    a -- { b c d }; b -- { c e }; c -- { e f }; d -- { f g }; e -- h;
+    f -- { h i j g }; g -- k; h -- { o l }; i -- { l m j }; j -- { m n k };
+    k -- { n r }; l -- { o m }; m -- { o p n }; n -- { q r };
+    o -- { s p }; p -- { s t q }; q -- { t r }; r -- t; s -- z; t -- z;
+    { rank=same; b, c, d }
+    { rank=same; e, f, g }
+    { rank=same; h, i, j, k }
+    { rank=same; l, m, n }
+    { rank=same; o, p, q, r }
+    { rank=same; s, t }
+}
+```
+
+### Örnek 8. Etan molekülü
+
 Aşağıda bir etan molekülünün bağ yapısını tanımlayan bir örnek kod verilmiştir. Bu, yönsüz bir graftır ve yukarıda açıklandığı gibi düğüm öznitelikleri içerir.
 
 ```dot
@@ -110,4 +307,6 @@ Bu sorun Inkscape veya diğer SVG düzenleyicilerle düzeltilebilir. Bazı durum
 ## Kaynaklar
 
 - [DOT (graph description language) - Wikipedia](https://en.wikipedia.org/wiki/DOT_(graph_description_language))
+- [GraphViz Pocket Reference](https://graphs.grevian.org)
+- [Graphviz Example: Hello World](https://graphviz.gitlab.io/_pages/Gallery/directed/hello.html)
 
