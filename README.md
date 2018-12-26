@@ -6,6 +6,8 @@ Bazı zeki insanlar bilgisayar bilimleri mezunlarının çizimde pek iyi olmadı
 
 Ücretsiz, açık kaynak kodlu ve harika olan bu yazılımın tek kusuruysa kullanımının inanılmaz derecede kolay olmamasıydı. Bu yüzden tezlerimiz, makalelerimiz ve ödevlerimiz için graf çizimimizi kolaylaştırmak için internetteki bazı güzel kaynaklardan yararlanarak bu belgeyi hazırladım.
 
+Kaynak olarak kullanmak isterseniz [How do you cite a Github repository?](https://academia.stackexchange.com/a/14015) sorusuna verilmiş cevaplara bakmayı unutmayın.
+
 ## Graphviz: Graf Görselleştirme Yazılımı
 
 Graphviz, AT&T Labs Research tarafından DOT graf tanımlama dilinde belirtilen grafları çizmek için başlatılan ve Eclipse Kamu Lisansıyla dağıtılan özgür bir araç paketidir. Ayrıca, sunduğu araçların diğer yazılımlarca kullanımı için kütüphaneler de sağlar.
@@ -509,6 +511,10 @@ digraph {
     node2 -> node3;
 }
 ```
+
+## Yapılacaklar
+
+Belge şu anda iş görecek tamlığa erişmiş durumda. Nihai tamlığa ulaşması için [Drawing graphs with dot](https://www.graphviz.org/pdf/dotguide.pdf) okunup önemli yerler belgeye aktarılacak.
 
 ## Kaynaklar
 
