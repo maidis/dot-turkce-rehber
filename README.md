@@ -6,6 +6,39 @@ Bazı zeki insanlar bilgisayar bilimleri mezunlarının çizimde pek iyi olmadı
 
 Ücretsiz, açık kaynak kodlu ve harika olan bu yazılımın tek kusuruysa kullanımının inanılmaz derecede kolay olmamasıydı. Bu yüzden tezlerimiz, makalelerimiz ve ödevlerimiz için graf çizimimizi kolaylaştırmak için internetteki bazı güzel kaynaklardan yararlanarak bu belgeyi hazırladım.
 
+## Graphviz: Graf Görselleştirme Yazılımı
+
+Graphviz, AT&T Labs Research tarafından DOT graf tanımlama dilinde belirtilen grafları çizmek için başlatılan ve Eclipse Kamu Lisansıyla dağıtılan özgür bir araç paketidir. Ayrıca, sunduğu araçların diğer yazılımlarca kullanımı için kütüphaneler de sağlar.
+
+![](./grafikler/graphviz.png)
+
+### Graphviz
+
+Graphviz özgür bir graf görselleştirme yazılımıdır. Graf görselleştirme, yapısal bilgiyi soyut graf ve ağ diyagramları olarak temsil etmenin bir yoludur. Ağ oluşturma, biyoinformatik, yazılım mühendisliği, veritabanı ve web tasarımı, makine öğrenmesi ve çeşitli diğer teknik alanlarda önemli uygulamalara sahiptir.
+
+### Graphviz'in Özellikleri
+
+Graphviz yerleşim planı programları, basit bir metin dosyasındaki graf açıklamalarını alır ve faydalı biçimlerde diyagramlar oluşturur, örneğin: web sayfaları için piksel ve vektör tabanlı görüntüler, diğer belgelere dahil etmek için PDF veya Postscript'ler veya etkileşimli graf görüntüleyiciler için uygun biçimli dosyalar.
+
+Graphviz, diyagramları oluşturmak için renk kullanma, yazı tipi değiştirme, çizgi stilleri ayarlama, bağlantı ekleme ve özel şekiller kullanma gibi birçok kullanışlı özelliğe sahiptir.
+
+Gerçekte, graflar genellikle harici bir veri kaynağından üretilir, ancak bunlar ham metin dosyaları olarak veya bir grafiksel düzenleyici içinde elle de oluşturulabilir ve düzenlenebilir. Graphviz bir Visio karşılığı olmadığı için bu amaçla kullanmayı denemek muhtemelen sinir bozucu olacaktır.
+
+### Graphviz Bileşenleri
+
+- dot - yönlendirilmiş grafların hiyerarşik veya katmanlı çizimleri. Bu, kenarların yönlülüğü varsa kullanılacak öntanımlı araçtır. Yerleşim planı algoritması, kenarların aynı yönde olmasını (yukarıdan aşağıya veya soldan sağa) hedefler ve ardından kenar geçişlerinden kaçınmaya ve kenar uzunluğunu azaltmaya çalışır.
+
+- neato - "spring model" yerleşimleri. Graf çok büyük değilse (yaklaşık 100 düğüm) ve graf hakkında başka bir şey bilmiyorsanız, kullanılacak öntanımlı araçtır. Neato, istatistiksel çok boyutlu ölçeklendirmeye eşdeğer olan küresel bir enerji fonksiyonunu en aza indirmeye çalışır. Çözüm, stress majorization kullanılarak elde edilir, ancak en dik inişi kullanan eski Kamada-Kawai algoritması da mevcuttur.
+
+- fdp - "spring model", neato ile benzer yerleşimlere sahiptir, ancak yerleşimi enerjiyle çalışmak yerine kuvvetleri azaltarak yapar. Fdp, daha büyük grafları işleyen ve yönlendirilmemiş grafları kümeleyen multigrid bir çözücü içeren Fruchterman-Reingold yaklaşımını uygular.
+
+- sfdp - büyük grafların yerleşimi için fdp'nin çok ölçekli sürümü.
+
+- twopi - dairesel yerleşimler. Düğümler, belirli bir kök düğümünden uzaklıklarına bağlı olarak eşmerkezli dairelere yerleştirilir. Kök düğüm ayarlanabilir veya twopi'nin yapmasına izin verilebilir.
+
+- circo - dairesel yerleşimler. Bu, belirli telekomünikasyon ağları gibi çoklu döngüsel yapıların bazı diyagramları için uygundur.
+
+
 ## DOT Dili
 
 DOT, bir graf betimleme dilidir. DOT grafları genellikle `gv` veya `dot` uzantılı dosyalarda yer alır. Microsoft Word'ün 2007 öncesindeki sürümlerinde kullanılan `dot` uzantılı dosyalarla karışıklığı önlemek için `gv` uzantısı tercih edilir.
@@ -385,4 +418,5 @@ Bu sorun Inkscape veya diğer SVG düzenleyicilerle düzeltilebilir. Bazı durum
 - [GraphViz Pocket Reference](https://graphs.grevian.org)
 - [Graphviz Example: Hello World](https://graphviz.gitlab.io/_pages/Gallery/directed/hello.html)
 - [DOT: A Language that Helps You to Draw Graphs](https://opensourceforu.com/2016/01/dot-a-language-that-helps-you-to-draw-graphs/)
-
+- [Graphviz: Graf Görselleştirme Yazılımı 
+](https://anilozbek.blogspot.com/2018/12/graphviz-graf-gorsellestirme-yazlm.html)
