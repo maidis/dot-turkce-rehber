@@ -50,6 +50,8 @@ $ dot ilkgraf.gs -Tsvg -o firstgraph.svg
 
 Oluşturulan grafiği görmek için de oluşturduğunuz dosyaya uygun olarak bir görüntüleyiciyi kullanabilirsiniz.
 
+![](./grafikler/dot-kullanimi.svg)
+
 
 ## DOT Sözdizimi
 
