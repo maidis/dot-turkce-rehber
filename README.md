@@ -67,6 +67,8 @@ graph graphname {
 }
 ```
 
+![](./grafikler/yonsuz-graf.svg)
+
 ### Yönlü Graflar
 
 Yönsüz graflara benzer şekilde DOT, akış çizelgeleri ve bağımlılık ağaçları gibi yönlü grafları da tanımlayabilir. Sözdizimi, grafa başlamak için `digraph` anahtar sözcüğünün kullanılması ve düğümler arasındaki ilişkileri göstermek için bir ok `->` kullanılması dışında yönsüz graflarla aynıdır.
@@ -77,6 +79,8 @@ digraph graphname {
     b -> d;
 }
 ```
+
+![](./grafikler/yonlu-graf.svg)
 
 ### Öznitellikler
 DOT dosyalarındaki graflara, düğümlere ve kenarlara çeşitli öznitelikler uygulanabilir. Bu özniteliklerle renk, şekil ve çizgi stilleri gibi özellikler kontrol edebilir. Düğümler ve kenarlar için, bir veya daha çok öznitelik-değer çifti, köşeli parantez `[]` içinde bir ifadeden sonra ve isteğe bağlı olan noktalı virgül kullanılmışsa ondan önce yerleştirilir.
@@ -98,6 +102,8 @@ graph graphname {
 }
 ```
 
+![](./grafikler/oznitelikler1.svg)
+
 HTML benzeri etiketler, yalnızca Kasım 2003'ten sonraki Graphviz sürümlerinde bulunur ve 1.10 sürümünün bir parçası olarak kabul edilmez.
 
 ### Yorumlar
@@ -117,10 +123,12 @@ Dot, `C` ve `C++` tarzı tek satır ve çok satırlı yorumları destekler. Ayr�
 ### Örnek 0. Merhaba Dünya
 
 ```dot
-graph {
-    Merhaba -> Dünya
+digraph {
+    Merhaba -> Dünya;
 }
 ```
+
+![](./grafikler/ornek-merhaba-dunya.svg)
 
 ### Örnek 1. Basit bir graf
 
@@ -134,6 +142,8 @@ graph {
     e -- a;
 }
 ```
+
+![](./grafikler/ornek-basit-graf.svg)
 
 ### Örnek 2. K6
 
@@ -157,6 +167,8 @@ graph {
 }
 ```
 
+![](./grafikler/ornek-k6.svg)
+
 ### Örnek 3. Basit bir yönlü graf
 
 ```dot
@@ -167,6 +179,8 @@ digraph {
     d -> a;
 }
 ```
+
+![](./grafikler/ornek-basit-yonlu-graf.svg)
 
 ### Örnek 4. Ağırlıklı bir graf
 
@@ -180,6 +194,8 @@ digraph {
     e -> b[label="0.7",weight="0.7"];
 }
 ```
+
+![](./grafikler/ornek-agirlikli-graf.svg)
 
 ### Örnek 5. Bir yolun gösterimi
 
@@ -196,6 +212,8 @@ graph {
 }
 ```
 
+![](./grafikler/ornek-yol-gosterimi.svg)
+
 Aşağıdaki gibi bir kestirme yöntem bulunduğunu da unutmayın:
 
 ```dot
@@ -207,6 +225,8 @@ graph {
     a -- d;
 }
 ```
+
+![](./grafikler/ornek-yol-gosterimi-kestirme.svg)
 
 ### Örnek 6. Alt graflar
 
@@ -229,18 +249,20 @@ digraph {
 }
 ```
 
+![](./grafikler/ornek-alt-graflar1.svg)
+
 Aşağıdaki örnekteyse düğümler kendi kenarlarından ayrı olarak gruplandırılmıştır. Ayrıca splines=line; ile kenarların sadece düz çizgiler olarak çizilmesi gerektiğini, hiçbir eğriye izin verilmediği belirtilmiştir.
 
 ```dot
 graph {
     splines=line;
     subgraph cluster_0 {
-        label="Subgraph A";
+        label="Alt graf A";
         a; b; c
     }
 
     subgraph cluster_1 {
-        label="Subgraph B";
+        label="Alt graf B";
         d; e;
     }
 
@@ -252,6 +274,8 @@ graph {
     c -- e;
 }
 ```
+
+![](./grafikler/ornek-alt-graflar2.svg)
 
 ### Örnek 7. Büyük graflar
 
@@ -283,6 +307,8 @@ graph {
 }
 ```
 
+![](./grafikler/ornek-buyuk-graflar1.svg)
+
 Büyük grafların yönetilebilir hale getirebilecek başka bir özellik de düğümleri aynı sütunda gruplamaktır:
 
 ```dot
@@ -301,6 +327,8 @@ graph {
 }
 ```
 
+![](./grafikler/ornek-buyuk-graflar2.svg)
+
 ### Örnek 8. Etan molekülü
 
 Aşağıda bir etan molekülünün bağ yapısını tanımlayan bir örnek kod verilmiştir. Bu, yönsüz bir graftır ve yukarıda açıklandığı gibi düğüm öznitelikleri içerir.
@@ -316,6 +344,8 @@ graph ethane {
     C_1 -- H_5 [type=s];
 }
 ```
+
+![](./grafikler/ornek-etan.svg)
 
 ## Sınırlamalar
 DOT ile yerleşim ayrıntılarını belirtmek mümkündür ancak DOT dilini gerçekleyen araçların tümü konum özelliklerine dikkat etmez. Bu nedenle, kullanılan araçlara bağlı olarak, kullanıcılar otomatik yerleşim algoritmalarına (potansiyel olarak beklenmeyen çıktılara yol açabilir) dayalı çözümler kullanmak veya sıkıcı olabilecek ve zaman alabilecek şekilde düğümleri elle konumlandırmak zorunda kalabilir.
@@ -339,9 +369,15 @@ digraph g {
 }
 ```
 
-Yukarıdaki resimde iki sorun var. Sağdaki kare mükemmel bir kare değil ve etiketler yanlış yerde.
+![](./grafikler/sinirlamalar1.svg)
+
+Yukarıdaki resimde iki sorun var. Sağdaki kare mükemmel bir kare değil ve etiketler yanlış yerde:
+
+> Warning: Unable to reclaim box space in spline routing for edge "B1" -> "B3". Something is probably seriously wrong.
 
 Bu sorun Inkscape veya diğer SVG düzenleyicilerle düzeltilebilir. Bazı durumlarda bu, bir konum belirtmek için pos özniteliği ve grafı kare olarak oluşturmak için weight özniteliği kullanılarak da düzeltilebilir.
+
+![](./grafikler/sinirlamalar2.svg)
 
 ## Kaynaklar
 

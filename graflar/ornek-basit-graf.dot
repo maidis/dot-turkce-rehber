@@ -1,0 +1,9 @@
+// circo ornek-basit-graf.dot -Tsvg -o ornek-basit-graf.svg
+graph {
+    a -- b;
+    b -- c;
+    a -- c;
+    d -- c;
+    e -- c;
+    e -- a;
+}

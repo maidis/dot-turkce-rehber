@@ -1,0 +1,14 @@
+digraph {
+    subgraph cluster_0 {
+        label="Alt graf A";
+        a -> b;
+        b -> c;
+        c -> d;
+    }
+
+    subgraph cluster_1 {
+        label="Alt graf B";
+        a -> f;
+        f -> c;
+    }
+}

@@ -1,0 +1,5 @@
+// Graf adı ve noktalı virgüller isteğe bağlıdır
+graph graphname {
+    a -- b -- c;
+    b -- d;
+}

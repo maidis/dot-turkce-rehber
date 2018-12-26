@@ -1,0 +1,12 @@
+graph graphname {
+    // Bu öznitelik grafın kendisi için geçerlidir.
+    size="1,1";
+    // Bir düğümün etiketini değiştirmek için label özniteliği kullanılabilir
+    a [label="Foo"];
+    // Burada, düğümün şekli değiştirildi
+    b [shape=box];
+    // Bu kenarların her ikisi de farklı çizgi özelliklerine sahip
+    a -- b -- c [color=blue];
+    b -- d [style=dotted];
+    // [style=invis] bir düğümü gizler
+}
