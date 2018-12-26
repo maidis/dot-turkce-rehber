@@ -412,6 +412,104 @@ Bu sorun Inkscape veya diğer SVG düzenleyicilerle düzeltilebilir. Bazı durum
 
 ![](./grafikler/sinirlamalar2.svg)
 
+## Referans
+Graflar ve köşeler (GraphViz notasyonunda düğümler) hem grafın asıl yerleşimini hem de renkler, etiketler ve çizgi türleri gibi ayrıntıları etkileyen çok sayıda özniteliğe sahip olabilir. Aşağıda özniteliklerden birkaçını ele alınmıştır ancak tam referans için [GraphViz Öznitelik Dizinine](http://graphviz.org/doc/info/attrs.html) bakın.
+
+### Öznitellikler
+
+#### Graf Öznitellikleri
+
+- `label="Grafım";` Bir grafın kendisini etiketler
+- `rankdir=LR;` Grafı yukarıdan aşağıya doğru değil soldan sağa doğru yerleştirir
+- `{rank=ayni; a, b, c }` Düğümleri bir grafın aynı seviyesinde birlikte gruplar
+- `splines="line";` Kenarları düz olmaya zorla, eğri veya açı yok
+- `K=0.6;` Yerleşimde kullanılan 'spring''i etkilemek için kullanılır, özellikle `twopi` ve `sfdp` yerleşimleri için yararlı olan düğümleri daha da ileri itmek için kullanılabilir
+
+#### Köşe Öznitellikleri
+
+- `[label="Bir Etiken"]` Köşeyi etiketler
+- `[color="red"]` Köşeyi renklendirir
+- `[fillcolor="blue"]` Köşeyi belirtilen renkle doldurur
+
+#### Kenar Öznitellikleri
+
+- `[label="Bir Etiket"]` Kenarı etiketler (Ağırlıklar için yararlı olabilir)
+- `[color="red"]` Kenarı renklendirir (Yollar için faydalı olabilir)
+- `[penwidth=2.0]` Kenar çizgisinin kalınlığını ayarlar, yollar için çok yararlıdır
+
+Kenarlar ayrıca `[weight=0.5]` şeklinde tanımlanabilen bir `weight` özniteliğine de sahip olabilir, ancak bunun ilgili yolun ağırlığını göstermek için olmadığına dikkat edin, bu ağırlık, ilgili kenara daha doğrudan bir yönlendirme vermesi için graf düzenine bir ipucudur.
+
+### Graflar
+
+Graflar, kenar listesine benzer şekilde epey standart sözdizimi kullanan bir `graph` veya `digraph` olarak tanımlanır.
+
+```dot
+graph {
+    düğüm1 -- düğüm2;
+    düğüm3 -- düğüm2;
+}
+```
+
+```dot
+digraph {
+    düğüm1 -> düğüm2;
+    düğüm3 -> düğüm2;
+}
+```
+
+### Köşeler
+
+Köşeler, `A, B, C, Test, Köşe1, bir_köşe` gibi basit bir düz metin etiketiyle tanımlanır. Daha karmaşık bir etikete ihtiyacınız varsa bir kenar tanımlamadan önce köşeyi deklare edebilir ve etiket özniteliğini belirtebilirsiniz. Örneğin:
+
+```dot
+digraph {
+    someVertex[label="Karmaşık Bir Etiket"];
+    someVertex -> node2;
+    node2 -> node3;
+}
+```
+
+
+### Kenarlar
+
+Çoğunlukla kenarlarla ilgili endişe edilen sadece rengi, kalınlığı ve etiketidir. Geri kalan her şey graph/digraph tanımlamasıyla otomatik olarak halledilir.
+
+Bir kenarı renklendirmek için [color özniteliğini](http://graphviz.org/doc/info/colors.html) graf tanımlamasına ekleyin:
+
+```dot
+digraph {
+    node1 -> node2[color="red"];
+}
+```
+
+Bir ağırlığı görüntülemek için köşelere düğümleri etiketleme şeklimize benzeyen bir etiket veriyoruz:
+
+```dot
+digraph {
+    node1 -> node2[label="0.2"];
+    node2 -> node3[label="0.2"];
+}
+```
+
+Aslında bu şekilde kenara istediğimiz herhangi bir etiketi uygulayabiliriz:
+
+```dot
+digraph {
+    node1 -> node2[label="edge1"];
+    node2 -> node3[label="edge2"];
+}
+```
+
+Bu öznitelikleri ayrıca istediğiniz şekilde birleştirebilirsiniz:
+
+```dot
+digraph {
+    node1[label="Some Complicated Label"];
+    node1 -> node2[label="An Edge",color=red];
+    node2 -> node3;
+}
+```
+
 ## Kaynaklar
 
 - [DOT (graph description language) - Wikipedia](https://en.wikipedia.org/wiki/DOT_(graph_description_language))
